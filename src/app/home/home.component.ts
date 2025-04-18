@@ -1,7 +1,6 @@
 import { LlmApiService } from './../services/llm-api.service';
 import { ChangeDetectionStrategy, Component, inject, signal, model, computed } from '@angular/core';
 import { ChatComponent } from "../chat/chat.component";
-import { UserConfigService } from '../services/user-config.service';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ChatSession } from '../models/chat-session.class';
@@ -9,6 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { LLMProvider } from '../models/provider.class';
 import { FormsModule } from '@angular/forms';
 import { MatFormField, MatInputModule, MatLabel } from '@angular/material/input';
+import { MatDialog } from '@angular/material/dialog';
+import { AddChatDialogComponent } from '../add-chat-dialog/add-chat-dialog.component';
 
 @Component({
   selector: 'app-home',
@@ -19,8 +20,9 @@ import { MatFormField, MatInputModule, MatLabel } from '@angular/material/input'
 })
 export class HomeComponent { 
 
-  private readonly configService = inject(UserConfigService);
   private readonly llmApiService = inject(LlmApiService);
+  readonly dialog = inject(MatDialog);
+
 
   chatSessions = signal<ChatSession[]>([]);
   globaluserInput = model<string>("");
@@ -31,19 +33,18 @@ export class HomeComponent {
   });
 
   openAddChatSessionDialog(): void{
- /*   let session:ChatSession = {
-      id:uuidv4(),
-      provider:provider,
-      model:model,
-    };
-    this.chatSessions.update((sessions)=> [...sessions,session]);
-*/
-    this.addChatSession(this.configService.providers[1],this.configService.providers[1].models[0]);
+    const dialogRef = this.dialog.open(AddChatDialogComponent);
+
+    dialogRef.afterClosed().subscribe((result:Partial<ChatSession>) => {
+      if (result !== undefined && result.provider && result.model) {
+        this.addChatSession(result.provider,result.model);
+      }
+    });
   }
 
 
   addChatSession(provider:LLMProvider,model:string): void{
-    let session:ChatSession = {
+    const session:ChatSession = {
       id:uuidv4(),
       provider:provider,
       model:model,
@@ -64,7 +65,7 @@ export class HomeComponent {
   removeChatSession(session:ChatSession):void{
     this.chatSessions.update((sessions)=>{
       const index = sessions.findIndex((e)=>e.id === session.id, 0);
-      let newSessions = [...sessions];
+      const newSessions = [...sessions];
       if(index>-1){
         newSessions.splice(index,1);
       }

@@ -5,7 +5,6 @@ import { LLMProvider } from '../models/provider.class';
   providedIn: 'root'
 })
 export class UserConfigService {
- 
-  constructor() { }
+  providers:LLMProvider[] = [];
 
 }
