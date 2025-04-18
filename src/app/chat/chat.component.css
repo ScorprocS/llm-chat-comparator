@@ -1,0 +1,21 @@
+:host {
+  display: block;
+}
+.assistant{
+  color:gray;
+  background-color: aliceblue;
+
+}
+.user{
+  color:blue;
+  background-color: lightgray;
+
+
+}
+
+.card-actions{
+  display: flex;
+  flex-direction: column;
+  gap:10px;
+  width: 100%;
+}
