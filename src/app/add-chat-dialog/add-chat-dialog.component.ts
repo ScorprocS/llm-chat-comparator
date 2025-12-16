@@ -12,11 +12,11 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { ChatSession } from '../models/chat-session.class';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-add-chat',
-  imports: [CommonModule,FormsModule,MatButtonModule,MatFormField,MatSelectModule,MatDialogActions,MatDialogClose, MatDialogContent,MatDialogTitle,],
+  imports: [FormsModule, MatButtonModule, MatFormField, MatSelectModule, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle],
   template: `<div>
    <h2 mat-dialog-title>New chat session</h2>
     <mat-dialog-content>
