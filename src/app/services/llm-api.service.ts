@@ -16,14 +16,11 @@ export class LlmApiService {
 
   
   sendChatMessages(messages:ChatMessage[],provider:LLMProvider,model:string,temperature=0.5):Observable<LlmResponse>{
-    return this.http.post<LlmResponse>(provider.chatUrl,{
-      
+    return this.http.post<LlmResponse>(provider.chatUrl,{    
         model: model,
         messages: messages,
         temperature:temperature,
         stream: false,
-    
-
     },{
       headers:{
         'Content-Type':'application/json',

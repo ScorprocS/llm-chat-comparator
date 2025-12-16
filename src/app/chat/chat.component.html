@@ -12,13 +12,21 @@
     </div>
   </mat-card-content>
   <mat-card-actions class="card-actions">
+    @if(userGlobalInput()){
+       <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Message</mat-label>
+        <textarea matInput [ngModel]="userGlobalInput()" [disabled]="true"></textarea>
+      </mat-form-field>
+
+    }@else {
       <mat-form-field appearance="outline" style="width: 100%;">
         <mat-label>Message</mat-label>
         <textarea matInput [(ngModel)]="userInput"></textarea>
       </mat-form-field>
+    } 
       <div>
-      <button mat-raised-button (click)="sendMessage(userInput())" [disabled]="!isUserInputValid()"><mat-icon>send</mat-icon>Send</button>
-      <button mat-raised-button (click)="clear()"><mat-icon>close</mat-icon>Clear</button>
+      <button mat-raised-button (click)="sendMessage(userInput())" [disabled]="!isUserInputValid() || userGlobalInput()"><mat-icon>send</mat-icon>Send</button>
+      <button mat-raised-button (click)="clear()" [disabled]="userGlobalInput()"><mat-icon>close</mat-icon>Clear</button>
     </div>
     
 

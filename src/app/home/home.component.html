@@ -3,7 +3,7 @@
 <div class="container">
   <div class="chat-list">
     @for(session of chatSessions(); track session.id){
-      <app-chat [chatSession]="session" (closeChat)="removeChatSession($event)" class="chat"></app-chat>
+      <app-chat [chatSession]="session" (closeChat)="removeChatSession($event)"  [userGlobalInput]="globaluserInput()" class="chat"></app-chat>
     }
   </div>
   <mat-form-field appearance="fill">

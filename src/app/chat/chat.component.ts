@@ -21,6 +21,8 @@ import { DecimalPipe } from '@angular/common';
 export class ChatComponent implements OnInit {
   private readonly llmApiService = inject(LlmApiService);
   chatSession = input.required<ChatSession>();
+  userGlobalInput = input.required<string>();
+
   closeChat = output<ChatSession>();
 
 
