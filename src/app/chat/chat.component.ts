@@ -22,7 +22,7 @@ export class ChatComponent implements OnInit {
   private readonly llmApiService = inject(LlmApiService);
   chatSession = input.required<ChatSession>();
   userGlobalInput = input.required<string>();
-
+  globaluserInputValid = input<boolean>(false);
   closeChat = output<ChatSession>();
 
 
@@ -44,7 +44,10 @@ export class ChatComponent implements OnInit {
 
   });
 
-  isUserInputValid = computed<boolean>(()=> !!this.userInput() && this.userInput().trim().length>0);
+  isUserInputValid = computed<boolean>(()=>{
+    const userInput = this.userInput();
+    return !!userInput && userInput.trim().length>0;
+  });
   
   
   ngOnInit(): void {
@@ -68,7 +71,7 @@ export class ChatComponent implements OnInit {
     const startTime = performance.now();
     
 
-    this.llmApiService.sendChatMessages(this.messages(),session.provider,session.model).subscribe(res=>{
+    this.llmApiService.sendChatMessages(this.messages(),session.provider,session.model,session.model.includes('gpt')?1:0.5).subscribe(res=>{
       const duration = performance.now() - startTime;
       this.messages.update((list)=>
         [...list,res.choices[res.choices.length-1].message]

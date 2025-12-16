@@ -1,5 +1,7 @@
 <mat-card>
   @let session = chatSession();
+  @let globalInputValid = globaluserInputValid();
+
   <mat-card-header>
     <mat-card-title>{{session.provider.name + ': ' + session.model}} <button mat-icon-button><mat-icon (click)="close()">close</mat-icon></button> </mat-card-title>
     <mat-card-subtitle>{{session.id}}</mat-card-subtitle>
@@ -12,21 +14,19 @@
     </div>
   </mat-card-content>
   <mat-card-actions class="card-actions">
-    @if(userGlobalInput()){
-       <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-form-field appearance="outline" style="width: 100%;" [style.display]="globalInputValid?'block':'none'">
         <mat-label>Message</mat-label>
         <textarea matInput [ngModel]="userGlobalInput()" [disabled]="true"></textarea>
       </mat-form-field>
 
-    }@else {
-      <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-form-field appearance="outline" style="width: 100%;"   [style.display]="globalInputValid?'none':'block'">
         <mat-label>Message</mat-label>
         <textarea matInput [(ngModel)]="userInput"></textarea>
-      </mat-form-field>
-    } 
+      </mat-form-field>      
+    
       <div>
-      <button mat-raised-button (click)="sendMessage(userInput())" [disabled]="!isUserInputValid() || userGlobalInput()"><mat-icon>send</mat-icon>Send</button>
-      <button mat-raised-button (click)="clear()" [disabled]="userGlobalInput()"><mat-icon>close</mat-icon>Clear</button>
+      <button mat-raised-button (click)="sendMessage(userInput())" [disabled]="!isUserInputValid() || globaluserInputValid()"><mat-icon>send</mat-icon>Send</button>
+      <button mat-raised-button (click)="clear()" [disabled]="globalInputValid"><mat-icon>close</mat-icon>Clear</button>
     </div>
     
 
