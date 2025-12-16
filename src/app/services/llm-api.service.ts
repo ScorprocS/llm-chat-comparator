@@ -26,9 +26,7 @@ export class LlmApiService {
         'Content-Type':'application/json',
         'Authorization': 'Bearer '+provider.apiKey
       }
-    });
-
-    
+    }); 
 
   }
 
