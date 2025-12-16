@@ -12,7 +12,8 @@ export interface LlmResponse {
   export interface Usage {
     prompt_tokens: number
     completion_tokens: number
-    total_tokens: number
+    total_tokens: number,
+    time: number;
   }
   
   export interface Choice {
