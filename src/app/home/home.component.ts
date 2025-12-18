@@ -15,7 +15,7 @@ import { AddChatDialogComponent } from '../add-chat-dialog/add-chat-dialog.compo
   selector: 'app-home',
   imports: [ChatComponent,MatButtonModule,MatIconModule,FormsModule,MatFormField,MatLabel,MatInputModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent { 

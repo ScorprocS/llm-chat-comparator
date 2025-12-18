@@ -1,16 +1,22 @@
-<h1>Home</h1>
-<button mat-icon-button (click)="openAddChatSessionDialog()"><mat-icon>add</mat-icon></button>
+<div class="title">
+  <h1>LLM Comparator</h1>
+  <button mat-icon-button class="addButton" (click)="openAddChatSessionDialog()"><mat-icon>add</mat-icon></button>
+</div>
+
 <div class="container">
   <div class="chat-list">
     @for(session of chatSessions(); track session.id){
       <app-chat [chatSession]="session" (closeChat)="removeChatSession($event)"  [userGlobalInput]="globaluserInput()" [globaluserInputValid]="globaluserInputValid()" class="chat"></app-chat>
     }
   </div>
-  <mat-form-field appearance="fill">
-    <mat-label>Global message</mat-label>
-    <textarea matInput [(ngModel)]="globaluserInput"></textarea>
-  </mat-form-field>
-  <button mat-raised-button type="button" (click)="sendMessageToAll()" [disabled]="!globaluserInputValid()">Send to all</button>
+  <div class="globalMessageBox">
+    <mat-form-field appearance="fill">
+        <mat-label>Global message</mat-label>
+        <textarea matInput [(ngModel)]="globaluserInput"></textarea>
+      </mat-form-field>
+      <button mat-raised-button type="button" (click)="sendMessageToAll()" [disabled]="!globaluserInputValid()">Send to all</button>
+      </div>
+
 </div>
 
 
