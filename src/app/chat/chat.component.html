@@ -14,15 +14,8 @@
     </div>
   </mat-card-content>
   <mat-card-actions class="card-actions">
-      <mat-form-field appearance="outline" style="width: 100%;" [style.display]="globalInputValid?'block':'none'">
-        <mat-label>Message</mat-label>
-        <textarea matInput [ngModel]="userGlobalInput()" [disabled]="true"></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" style="width: 100%;"   [style.display]="globalInputValid?'none':'block'">
-        <mat-label>Message</mat-label>
-        <textarea matInput [(ngModel)]="userInput"></textarea>
-      </mat-form-field>      
+      <app-clearable-textarea [value]="userGlobalInput()" label="Message" style="width:100%" [style.display]="globalInputValid?'block':'none'" [disabled]="true"></app-clearable-textarea>
+      <app-clearable-textarea [(value)]="userInput" label="Message" style="width:100%" [style.display]="globalInputValid?'none':'block'"></app-clearable-textarea>
     
       <div>
       <button mat-raised-button (click)="sendMessage(userInput())" [disabled]="!isUserInputValid() || globaluserInputValid()"><mat-icon>send</mat-icon>Send</button>

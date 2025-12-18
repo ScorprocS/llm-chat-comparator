@@ -10,12 +10,12 @@
     }
   </div>
   <div class="globalMessageBox">
-    <mat-form-field appearance="fill">
-        <mat-label>Global message</mat-label>
-        <textarea matInput [(ngModel)]="globaluserInput"></textarea>
-      </mat-form-field>
-      <button mat-raised-button type="button" (click)="sendMessageToAll()" [disabled]="!globaluserInputValid()">Send to all</button>
-      </div>
+    <app-clearable-textarea [(value)]="globaluserInput" label="Global message" style="width:90%"></app-clearable-textarea>
+    <div style="display: flex;flex-direction: column;justify-content: center; align-items: center;">
+      <button mat-raised-button type="button" (click)="sendMessageToAll()" [disabled]="!globaluserInputValid()"><mat-icon>send</mat-icon>Send to all</button>
+     <button mat-raised-button (click)="clear()" [disabled]="!globaluserInputValid()"><mat-icon>close</mat-icon>Clear</button>
+  </div>
+  </div>
 
 </div>
 

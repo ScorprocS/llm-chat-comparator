@@ -156,9 +156,6 @@ button[mat-raised-button] {
   padding: 1rem 2rem;
   font-size: 1rem;
   font-weight: 500;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  border-radius: 8px;
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
   transition: all 0.3s ease;
 }
@@ -169,7 +166,7 @@ button[mat-raised-button]:not([disabled]):hover {
 }
 
 button[mat-raised-button][disabled] {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
