@@ -2,7 +2,7 @@ import { Usage } from './../models/response.class';
 import { ChangeDetectionStrategy, Component, computed, inject, input, model, OnInit, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
-import {MatFormField, MatInputModule, MatLabel} from '@angular/material/input';
+import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import { LlmApiService } from '../services/llm-api.service';
@@ -14,7 +14,7 @@ import { ClearableTextarea } from "../lib/clearable-textarea/clearable-textarea"
 
 @Component({
   selector: 'app-chat',
-  imports: [MatCardModule, MatInputModule, FormsModule, MatListModule, MatButtonModule, MatLabel, MatFormField, MatIconModule, DecimalPipe, ClearableTextarea],
+  imports: [MatCardModule, MatInputModule, FormsModule, MatListModule, MatButtonModule, MatIconModule, DecimalPipe, ClearableTextarea],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

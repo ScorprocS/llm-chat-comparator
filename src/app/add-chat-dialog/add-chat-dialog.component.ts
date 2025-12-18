@@ -1,6 +1,6 @@
 import { UserConfigService } from '../services/user-config.service';
 import { LLMProvider } from '../models/provider.class';
-import { ChangeDetectionStrategy, Component, computed, inject, model, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, model } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormField } from '@angular/material/input';
@@ -24,7 +24,7 @@ import { ChatSession } from '../models/chat-session.class';
       <mat-form-field>
         <mat-label>Provider</mat-label>
         <mat-select name="selectProvider" [(ngModel)]="selectedProvider" required>
-          @for (p of providers(); track p.name) {
+          @for (p of this.userConfig.providers(); track p.name) {
             <mat-option [value]="p">{{p.name}}</mat-option>
           }
         </mat-select>
@@ -53,8 +53,7 @@ import { ChatSession } from '../models/chat-session.class';
 })
 export class AddChatDialogComponent { 
 
-  private readonly userConfig = inject(UserConfigService);
-  protected readonly providers = signal<LLMProvider[]>(this.userConfig.providers);
+  protected readonly userConfig = inject(UserConfigService);
   protected readonly selectedProvider = model<LLMProvider>();
   protected readonly selectedModel = model<string>();
 

@@ -7,14 +7,14 @@ import { ChatSession } from '../models/chat-session.class';
 import { v4 as uuidv4 } from 'uuid';
 import { LLMProvider } from '../models/provider.class';
 import { FormsModule } from '@angular/forms';
-import { MatFormField, MatInputModule, MatLabel } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
 import { AddChatDialogComponent } from '../add-chat-dialog/add-chat-dialog.component';
 import { ClearableTextarea } from '../lib/clearable-textarea/clearable-textarea';
 
 @Component({
   selector: 'app-home',
-  imports: [ChatComponent,MatButtonModule,MatIconModule,FormsModule,MatFormField,MatLabel,MatInputModule,ClearableTextarea],
+  imports: [ChatComponent,MatButtonModule,MatIconModule,FormsModule,MatInputModule,ClearableTextarea],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
