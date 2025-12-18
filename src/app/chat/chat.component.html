@@ -14,8 +14,8 @@
     </div>
   </mat-card-content>
   <mat-card-actions class="card-actions">
-      <app-clearable-textarea [value]="userGlobalInput()" label="Message" style="width:100%" [style.display]="globalInputValid?'block':'none'" [disabled]="true"></app-clearable-textarea>
-      <app-clearable-textarea [(value)]="userInput" label="Message" style="width:100%" [style.display]="globalInputValid?'none':'block'"></app-clearable-textarea>
+      <app-clearable-input [value]="userGlobalInput()" label="Message" style="width:100%" [style.display]="globalInputValid?'block':'none'" [disabled]="true"  inputType="textarea"></app-clearable-input>
+      <app-clearable-input [(value)]="userInput" label="Message" style="width:100%" [style.display]="globalInputValid?'none':'block'"  inputType="textarea"></app-clearable-input>
     
       <div>
       <button mat-raised-button (click)="sendMessage(userInput())" [disabled]="!isUserInputValid() || globaluserInputValid()"><mat-icon>send</mat-icon>Send</button>

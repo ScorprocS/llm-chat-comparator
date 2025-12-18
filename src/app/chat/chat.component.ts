@@ -10,11 +10,11 @@ import { ChatMessage } from '../models/message.class';
 import { MatIconModule } from '@angular/material/icon';
 import { ChatSession } from '../models/chat-session.class';
 import { DecimalPipe } from '@angular/common';
-import { ClearableTextarea } from "../lib/clearable-textarea/clearable-textarea";
+import { ClearableInput } from "../lib/clearable-textarea/clearable-textarea";
 
 @Component({
   selector: 'app-chat',
-  imports: [MatCardModule, MatInputModule, FormsModule, MatListModule, MatButtonModule, MatIconModule, DecimalPipe, ClearableTextarea],
+  imports: [MatCardModule, MatInputModule, FormsModule, MatListModule, MatButtonModule, MatIconModule, DecimalPipe, ClearableInput],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
