@@ -27,7 +27,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 
 # Copy ONLY the built artifacts from Stage 1
 # This excludes node_modules and all build dependencies
-COPY --from=build /app/dist/<your-app-name>/browser /usr/share/nginx/html
+COPY --from=build /app/dist/llm-chat-comparator/browser /usr/share/nginx/html
 
 EXPOSE 80
 
