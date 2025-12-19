@@ -68,3 +68,7 @@ docker save -o llmcomp.tar llmcomp
 docker load < llmcomp.tar
 k3s ctr images import llmcomp.tar
 k3s ctr images ls | grep llmcomp
+
+
+update image
+kubectl rollout restart deployment llmcomp-deployment
