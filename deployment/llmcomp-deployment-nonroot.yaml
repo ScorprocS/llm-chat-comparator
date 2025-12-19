@@ -27,7 +27,7 @@ spec:
       - name: llmcomp
         image: scorpprocs/llmcomp:latest
         ports:
-        - containerPort: 80 # Changé en 8080 pour le mode non-root
+        - containerPort: 8080 # Changé en 8080 pour le mode non-root
         
         # Sécurité au niveau du Container
         securityContext:

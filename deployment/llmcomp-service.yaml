@@ -8,5 +8,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80      # The port the Service listens on (referenced by Ingress)
-      targetPort: 80 # The port your Container is listening on
+      targetPort: 8080 # The port your Container is listening on
   type: ClusterIP
