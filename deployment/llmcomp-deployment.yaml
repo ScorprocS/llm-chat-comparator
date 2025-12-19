@@ -17,6 +17,7 @@ spec:
       containers:
       - name: llmcomp
         image: scorpprocs/llmcomp:latest
+        imagePullPolicy: Always # <--- This forces K3s to check the registry on every restart
         ports:
         - containerPort: 80
         resources:
