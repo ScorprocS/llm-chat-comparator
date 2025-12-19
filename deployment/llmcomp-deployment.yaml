@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llmcomp-deployment
+  labels:
+    app: llmcomp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: llmcomp
+  template:
+    metadata:
+      labels:
+        app: llmcomp
+    spec:
+      containers:
+      - name: llmcomp
+        image: scorpprocs/llmcomp:latest
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+          requests:
+            memory: "128Mi"
+            cpu: "100m"

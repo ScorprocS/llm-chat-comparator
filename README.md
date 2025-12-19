@@ -60,8 +60,11 @@ For more information on using the Angular CLI, including detailed command refere
 
 
 ##build docker
-docker build -t llmcomp .
+docker build -t scorpprocs/llmcomp .
+docker push scorpprocs/llmcomp
 docker save -o llmcomp.tar llmcomp
 
 ##deploy 
-docker 
+docker load < llmcomp.tar
+k3s ctr images import llmcomp.tar
+k3s ctr images ls | grep llmcomp
