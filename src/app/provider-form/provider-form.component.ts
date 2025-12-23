@@ -70,7 +70,6 @@ export class ProviderFormDialog implements OnInit{
   onSubmit(): void {
     if (this.form.valid) {
       const providerData = this.form.getRawValue() as LLMProvider;
-      console.log('Provider Data:', providerData);
       this.dialogRef.close(providerData);
     }
   }
