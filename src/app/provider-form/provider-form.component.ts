@@ -39,7 +39,6 @@ export class ProviderFormDialog implements OnInit{
 
   ngOnInit(): void {
     if(this.data ){
-      console.log(this.data.models)
       this.form.setValue(  {
           name: this.data.name,
           chatUrl: this.data.chatUrl,
@@ -48,7 +47,6 @@ export class ProviderFormDialog implements OnInit{
         });
       this.models.clear();
       this.data.models.forEach(item => {
-        console.log("ici")
         this.models.push(this.createModelForm(item));
       });
     }

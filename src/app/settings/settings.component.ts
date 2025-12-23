@@ -50,7 +50,6 @@ export class SettingsComponent {
   displayedColumns: string[] = ['name', 'chatUrl', 'models', 'actions'];
 
   editProvider(index:number,provider: LLMProvider):void {
-    console.log('Modifier:', provider.name);
      const dialog = this.dialog.open(ProviderFormDialog, {
       data: {...provider,id:index},
     });
@@ -69,13 +68,10 @@ export class SettingsComponent {
   }
 
   deleteProvider(provider: LLMProvider):void {
-    console.log('Supprimer:', provider.name);
-    // Logique pour filtrer le signal
     this.providers.update(prev => prev.filter(p => p !== provider));
   }
 
   addProvider():void{
-    console.log('addProvider')
     const dialog = this.dialog.open(ProviderFormDialog, {
       data: null,
     });
