@@ -72,3 +72,6 @@ k3s ctr images ls | grep llmcomp
 
 update image
 kubectl rollout restart deployment llmcomp-deployment
+
+
+ kubectl logs deployment.apps/llmcomp-deployment --namespace llmcomp
