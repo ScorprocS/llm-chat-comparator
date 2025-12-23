@@ -1,3 +1,4 @@
+import { UserConfigService } from './../services/user-config.service';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -23,8 +24,11 @@ MatChipsModule],
 export class SettingsComponent { 
 
    dialog = inject(MatDialog);
+   userConfigService =  inject(UserConfigService);
 
+   providers = this.userConfigService.providers;
 
+/*
   providers = signal<LLMProvider[]>([
     {
       name: 'OpenAI',
@@ -44,7 +48,7 @@ export class SettingsComponent {
       apiKey: 'none',
       models: ['llama3', 'mistral', 'phi3']
     }
-  ]);
+  ]);*/
 
   // Colonnes affichées (on exclut explicitement 'apiKey')
   displayedColumns: string[] = ['name', 'chatUrl', 'models', 'actions'];

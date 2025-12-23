@@ -1,7 +1,7 @@
 <div class="list-container">
   <mat-card appearance="outlined">
     <mat-card-header>
-      <mat-card-title>Fournisseurs LLM Configurés</mat-card-title>
+      <mat-card-title>LLM Providers</mat-card-title>
       <button mat-icon-button (click)="addProvider()"><mat-icon>add</mat-icon></button>
     </mat-card-header>
 
@@ -10,7 +10,7 @@
 
         <!-- Colonne Nom -->
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Nom </th>
+          <th mat-header-cell *matHeaderCellDef> Name </th>
           <td mat-cell *matCellDef="let provider"> 
             <strong>{{ provider.name }}</strong> 
           </td>
@@ -26,7 +26,7 @@
 
         <!-- Colonne Modèles (Affichés sous forme de Chips) -->
         <ng-container matColumnDef="models">
-          <th mat-header-cell *matHeaderCellDef> Modèles </th>
+          <th mat-header-cell *matHeaderCellDef> Models </th>
           <td mat-cell *matCellDef="let provider">
             <mat-chip-set>
               @for (model of provider.models; track model) {
@@ -54,7 +54,7 @@
 
         <!-- Affiché si aucune donnée -->
         <tr class="mat-row" *matNoDataRow>
-          <td class="mat-cell" colspan="4">Aucun fournisseur configuré.</td>
+          <td class="mat-cell" colspan="4">No providers.</td>
         </tr>
       </table>
     </mat-card-content>
