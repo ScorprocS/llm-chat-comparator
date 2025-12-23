@@ -11,10 +11,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialog } from '@angular/material/dialog';
 import { AddChatDialogComponent } from '../add-chat-dialog/add-chat-dialog.component';
 import { ClearableInput } from '../lib/clearable-textarea/clearable-textarea';
+import { RouterModule } from "@angular/router";
 
 @Component({
   selector: 'app-home',
-  imports: [ChatComponent,MatButtonModule,MatIconModule,FormsModule,MatInputModule,ClearableInput],
+  imports: [ChatComponent, MatButtonModule, MatIconModule, FormsModule, MatInputModule, ClearableInput, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
