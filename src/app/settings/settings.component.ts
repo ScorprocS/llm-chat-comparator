@@ -8,7 +8,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { ProviderFormDialog } from '../provider-form/provider-form.component';
-import { CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDragPreview, CdkDropList } from '@angular/cdk/drag-drop';
+import { CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDropList } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-settings',
@@ -20,7 +20,6 @@ import { CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDragPreview, CdkDropList }
 MatChipsModule,
 CdkDrag,
 CdkDropList,
-CdkDragPreview,
 CdkDragPlaceholder,
 
 
