@@ -8,6 +8,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material/chips';
 import { MatDialog } from '@angular/material/dialog';
 import { ProviderFormDialog } from '../provider-form/provider-form.component';
+import { CdkDrag, CdkDragDrop, CdkDragPlaceholder, CdkDragPreview, CdkDropList } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-settings',
@@ -16,12 +17,19 @@ import { ProviderFormDialog } from '../provider-form/provider-form.component';
     MatIconModule,
     MatCardModule,
   MatTableModule,
-MatChipsModule],
+MatChipsModule,
+CdkDrag,
+CdkDropList,
+CdkDragPreview,
+CdkDragPlaceholder,
+
+
+],
   templateUrl:'./settings.component.html',
   styleUrl: './settings.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SettingsComponent { 
+export class SettingsComponent {
 
    dialog = inject(MatDialog);
    userConfigService =  inject(UserConfigService);
@@ -51,7 +59,7 @@ export class SettingsComponent {
   ]);*/
 
   // Colonnes affichées (on exclut explicitement 'apiKey')
-  displayedColumns: string[] = ['name', 'chatUrl', 'models', 'actions'];
+  displayedColumns: string[] = ['drag','name', 'chatUrl', 'models', 'actions'];
 
   editProvider(index:number,provider: LLMProvider):void {
      const dialog = this.dialog.open(ProviderFormDialog, {
@@ -85,6 +93,19 @@ export class SettingsComponent {
         this.providers.update((providers)=>[...providers,res])
     });
   }
+dropRowInTable(event:  CdkDragDrop<LLMProvider[]>) {
+  console.log(event)
+   //moveItemInArray(this.dataSource, event.previousIndex, event.currentIndex);
+   this.providers.update((providers)=>{
 
+    const item = providers[event.previousIndex];
+    const filtered = providers.filter((_, index) => index !== event.previousIndex);
+    return [
+      ...filtered.slice(0, event.currentIndex),
+      item,
+      ...filtered.slice(event.currentIndex)
+    ];
+    });
+  }
   
 }
