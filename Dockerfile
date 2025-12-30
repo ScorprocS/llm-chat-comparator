@@ -30,10 +30,17 @@ RUN rm -rf /usr/share/nginx/html/* && \
     # 1. Créer les dossiers de cache et changer le propriétaire
 # On s'assure que l'utilisateur nginx a les droits sur tout ce dont il a besoin
 RUN touch /var/run/nginx.pid && \
+    mkdir -p /var/cache/nginx/client_temp \
+             /var/cache/nginx/proxy_temp \
+             /var/cache/nginx/fastcgi_temp \
+             /var/cache/nginx/uwsgi_temp \
+             /var/cache/nginx/scgi_temp && \
     chown -R nginx:nginx /var/run/nginx.pid && \
     chown -R nginx:nginx /var/cache/nginx && \
     chown -R nginx:nginx /var/log/nginx && \
-    chown -R nginx:nginx /etc/nginx/conf.d
+    chown -R nginx:nginx /etc/nginx/conf.d && \
+    chmod -R 755 /var/cache/nginx && \
+    chmod 755 /var/run/nginx.pid
 
     
 # Copy custom nginx configuration
