@@ -75,3 +75,7 @@ kubectl rollout restart deployment llmcomp-deployment
 
 
  kubectl logs deployment.apps/llmcomp-deployment --namespace llmcomp
+
+
+restart after node join to spread the container correctly
+kubectl rollout restart deployment llmcomp-deployment -n llmcomp
