@@ -2,6 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: llmcomp-ingress
+  namespace: llmcomp
   annotations:
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
 spec:

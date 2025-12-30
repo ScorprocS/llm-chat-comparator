@@ -2,6 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: llmcomp-service
+  namespace: llmcomp
 spec:
   selector:
     app: llmcomp  # This must match the label in your Deployment

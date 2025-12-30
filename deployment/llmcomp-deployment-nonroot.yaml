@@ -6,7 +6,7 @@ metadata:
   labels:
     app: llmcomp
 spec:
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: llmcomp
@@ -25,16 +25,18 @@ spec:
       containers:
       - name: llmcomp
         image: scorpprocs/llmcomp:latest
+        imagePullPolicy: Always # <--- This forces K3s to check the registry on every restart
+
         ports:
         - containerPort: 8080 # Changé en 8080 pour le mode non-root
-        
+
         # Sécurité au niveau du Container
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
             drop:
             - ALL
-          readOnlyRootFilesystem: true # Optionnel: empêche d'écrire dans le système de fichiers du container
+          readOnlyRootFilesystem: false # Optionnel: empêche d'écrire dans le système de fichiers du container
 
         resources:
           limits:
