@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llmcomp-deployment
+  namespace: llmcomp
+  labels:
+    app: llmcomp
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: llmcomp
+  template:
+    metadata:
+      labels:
+        app: llmcomp
+    spec:
+      # Pod Anti-Affinity to spread pods across different nodes
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - llmcomp
+              topologyKey: kubernetes.io/hostname
+      
+      # Sécurité au niveau du Pod
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 101
+        seccompProfile:
+          type: RuntimeDefault
+
+      containers:
+      - name: llmcomp
+        image: scorpprocs/llmcomp:latest
+        imagePullPolicy: Always # <--- This forces K3s to check the registry on every restart
+
+        ports:
+        - containerPort: 8080 # Changé en 8080 pour le mode non-root
+
+        # Sécurité au niveau du Container
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          readOnlyRootFilesystem: false # Optionnel: empêche d'écrire dans le système de fichiers du container
+
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
